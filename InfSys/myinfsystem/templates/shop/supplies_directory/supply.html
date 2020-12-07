@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Supply {{ supply.pk }}</h1>
+    <p class="lead text-muted">Information about supply (<a href="{% url 'Supplies' %}">back to supplies</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-12">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered table-light table-striped">
+                    <thead>
+                    <tr>
+                        <th>Supply id</th>
+                        <th>Supply date</th>
+                        <th>Supply provider</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ supply.pk }}</td>
+                        <td>{{ supply.date }}</td>
+                        <td>{{ supply.provider }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

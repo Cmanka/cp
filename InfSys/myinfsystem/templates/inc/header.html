@@ -1,0 +1,42 @@
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About IS</h4>
+                    <p class="text-muted">In this information system you can manipulate your data and get needed
+                        information about employees, clients, products and etc. Also comfortable admin panel and dynamic
+                        design</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Main pages</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-white">Home page</a></li>
+
+                        {% if request.user.is_authenticated %}
+                            <li><a href="/admin" class="text-white">Admin panel</a></li>
+                            <li><a href="{% url 'Report' %}" class="text-white">Report</a></li>
+                            <li><a href="{% url 'queries' %}" class="text-white">Queries</a></li>
+                            <li><a href="{% url 'logout' %}" class="text-white">Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}" class="text-white">Login</a></li>
+                        {% endif %}
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>Information system</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>

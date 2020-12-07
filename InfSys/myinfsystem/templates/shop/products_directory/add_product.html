@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Add product</h1>
+    <p class="lead text-muted">Add new product (<a href="{% url 'Products' %}">go to products</a> or to <a
+            href="{% url 'home' %}">home</a>)
+    </p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container bg-dark text-light mt-3 mb-3" style="border:5px solid black;border-radius:20px;">
+        <form action="{% url 'Add_Product' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-secondary btn-block">Add product</button>
+        </form>
+    </div>
+{% endblock %}

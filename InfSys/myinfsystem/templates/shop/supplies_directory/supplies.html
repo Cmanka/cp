@@ -1,0 +1,25 @@
+{% extends 'records_list.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Supplies page</h1>
+    <p class="lead text-muted">Information about all supplies(<a href="{% url 'home' %}">go to home page</a>)</p>
+{% endblock %}
+{% block elements_list %}
+    {% for supply in supplies %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <p class="card-text"><strong>Supply id:</strong> {{ supply.pk }}</p>
+                    <p class="card-text"><strong>Supply date:</strong> {{ supply.date }}</p>
+                    <p class="card-text"><strong>Supply provider:</strong> {{ supply.provider.name }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'Supply' supply.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

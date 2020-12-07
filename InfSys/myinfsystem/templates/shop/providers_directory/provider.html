@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Provider {{ provider.pk }}</h1>
+    <p class="lead text-muted">Information about {{ provider.name }} (<a href="{% url 'Providers' %}">back to
+        providers</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-12">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered table-light table-striped">
+                    <thead>
+                    <tr>
+                        <th>Provider id</th>
+                        <th>Provider name</th>
+                        <th>Provider representative</th>
+                        <th>Provider email</th>
+                        <th>Provider phone</th>
+                        <th>Provider address</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ provider.pk }}</td>
+                        <td>{{ provider.name }}</td>
+                        <td>{{ provider.representative }}</td>
+                        <td>{{ provider.email }}</td>
+                        <td>{{ provider.phone }}</td>
+                        <td>{{ provider.address }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

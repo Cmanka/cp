@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load model_tags %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Home page</h1>
+    <p class="lead text-muted">On this page you can get information about all models in your information
+        system</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                {% if request.user|has_group:'employee' %}
+                    {% for model in models_employee.items %}
+                        <div class="col-md-6">
+                            <div class="card mb-4 box-shadow">
+                                <img src="{{ model.1.1 }}" alt=""
+                                     class="mr-3" style="height:350px;width:100%;display:block;">
+                                <div class="card-body">
+                                    <p class="card-text">{{ model.1.0 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="{% url model.0 %}" type="button"
+                                           class="btn btn-sm btn-outline-secondary">View</a>
+                                        {% if forloop.counter0 <= 3 %}
+                                            <a href="{% url model.1.2 %}" type="button"
+                                               class="btn btn-sm btn-secondary">Add</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for model in models_superusers.items %}
+                        <div class="col-md-6">
+                            <div class="card mb-4 box-shadow">
+                                <img src="{{ model.1.1 }}" alt=""
+                                     class="mr-3" style="height:350px;width:100%;display:block;">
+                                <div class="card-body">
+                                    <p class="card-text">{{ model.1.0 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="{% url model.0 %}" type="button"
+                                           class="btn btn-sm btn-outline-secondary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

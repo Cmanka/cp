@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Order {{ order.pk }}</h1>
+    <p class="lead text-muted">Information about order (<a href="{% url 'Orders' %}">back to orders</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-12">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered table-light table-striped">
+                    <thead>
+                    <tr>
+                        <th>Order id</th>
+                        <th>Order product</th>
+                        <th>Order start date</th>
+                        <th>Order end date</th>
+                        <th>Order client</th>
+                        <th>Order employee</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ order.pk }}</td>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.start_date }}</td>
+                        <td>{{ order.end_date }}</td>
+                        <td>{{ order.client }}</td>
+                        <td>{{ order.employee }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

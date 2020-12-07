@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Product {{ product.pk }}</h1>
+    <p class="lead text-muted">Information about {{ product.name }} (<a href="{% url 'Products' %}">back to products</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-12">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered table-light table-striped">
+                    <thead>
+                    <tr>
+                        <th>Product id</th>
+                        <th>Product technical description</th>
+                        <th>Product price</th>
+                        <th>Is there in the shop</th>
+                        <th>Product category</th>
+                        <th>Product supply</th>
+                        <th>Product image</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ product.pk }}</td>
+                        <td>{{ product.tech_description }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.is_on_shop }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.supply }}</td>
+                        <td>{% if product.image %}
+                    <img src="{{ product.image.url }}" alt="" style="height:250px;width:250px;display:block;">
+                {% else %}
+                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-1.jpg" alt=""
+                         class="mr-3" style="height:250px;width:250px;display:block;">
+                {% endif %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

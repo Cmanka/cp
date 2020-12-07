@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Category {{ category.pk }}</h1>
+    <p class="lead text-muted">Information about {{ category.name }} (<a href="{% url 'Categories' %}">back to
+        categories</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-12">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered table-light table-striped">
+                    <thead>
+                    <tr>
+                        <th>Category id</th>
+                        <th>Category name</th>
+                        <th>Category description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ category.pk }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.description }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

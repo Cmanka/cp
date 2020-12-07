@@ -1,0 +1,28 @@
+{% extends 'records_list.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Providers page</h1>
+    <p class="lead text-muted">Information about all providers(<a href="{% url 'home' %}">go to home page</a>)</p>
+{% endblock %}
+{% block elements_list %}
+    {% for provider in providers %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <p class="card-text"><strong>Provider id:</strong> {{ provider.pk }}</p>
+                    <p class="card-text"><strong>Provider name:</strong> {{ provider.name }}</p>
+                    <p class="card-text"><strong>Provider representative:</strong> {{ provider.representative }}</p>
+                    <p class="card-text"><strong>Provider email:</strong> {{ provider.email }}</p>
+                    <p class="card-text"><strong>Provider phone:</strong> {{ provider.phone }}</p>
+                    <p class="card-text"><strong>Provider address:</strong> {{ provider.address }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'Provider' provider.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

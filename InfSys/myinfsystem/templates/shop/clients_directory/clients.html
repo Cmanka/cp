@@ -1,0 +1,38 @@
+{% extends 'records_list.html' %}
+{% load model_tags %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Clients page</h1>
+    <p class="lead text-muted">Information about all clients(<a href="{% url 'home' %}">go to home page</a>)</p>
+{% endblock %}
+{% block elements_list %}
+    {% for client in clients %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <p class="card-text"><strong>Client id:</strong> {{ client.pk }}</p>
+                    <p class="card-text"><strong>Client FIO:</strong> {{ client }}</p>
+                    <p class="card-text"><strong>Client email:</strong> {{ client.email }}</p>
+                    <p class="card-text"><strong>Client phone:</strong> {{ client.phone }}</p>
+                    <p class="card-text"><strong>Client address:</strong> {{ client.address }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        {% if request.user|has_group:'employee' %}
+                            <div class="btn-group">
+                                <a href="{% url 'Client' client.pk %}" type="button"
+                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{% url 'Edit_Client' client.pk %}" class="btn btn-sm btn-dark">Edit</a>
+                            </div>
+                            <a href="{% url 'Delete_Client' client.pk %}" class="btn btn-sm btn-secondary ">Delete</a>
+                        {% else %}
+                            <a href="{% url 'Client' client.pk %}" type="button"
+                               class="btn btn-sm btn-outline-secondary">View</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

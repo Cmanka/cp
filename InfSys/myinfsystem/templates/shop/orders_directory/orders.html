@@ -1,0 +1,44 @@
+{% extends 'records_list.html' %}
+{% load model_tags %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Orders page</h1>
+    <p class="lead text-muted">Information about all orders(<a href="{% url 'home' %}">go to home page</a>)</p>
+{% endblock %}
+{% block elements_list %}
+    {% for order in orders %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                {% if order.product.image %}
+                    <img src="{{ order.product.image.url }}" alt="" style="height:225px;width:100%;display:block;">
+                {% else %}
+                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-1.jpg" alt=""
+                         class="mr-3" style="height:225px;width:100%;display:block;">
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-text"><strong>Order product:</strong> {{ order.product }}</p>
+                    <p class="card-text"><strong>Order start:</strong> {{ order.start_date }}</p>
+                    <p class="card-text"><strong>Order end:</strong> {{ order.end_date }}</p>
+                    <p class="card-text"><strong>Order client:</strong> {{ order.client }}</p>
+                    <p class="card-text"><strong>Order employee:</strong> {{ order.employee }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        {% if request.user|has_group:'employee' %}
+                            <div class="btn-group">
+                                <a href="{% url 'Order' order.pk %}" type="button"
+                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{% url 'Edit_Order' order.pk %}" class="btn btn-sm btn-dark">Edit</a>
+                            </div>
+                            <a href="{% url 'Delete_Order' order.pk %}" class="btn btn-sm btn-secondary ">Delete</a>
+                        {% else %}
+                            <a href="{% url 'Order' order.pk %}" type="button"
+                               class="btn btn-sm btn-outline-secondary">View</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

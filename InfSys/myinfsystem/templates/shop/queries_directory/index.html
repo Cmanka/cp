@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="jumbotron-heading">Queries page</h1>
+    <p class="lead text-muted">On this page you can get information about all queries in your information
+        system</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                {% for query in queries.items %}
+                    <div class="col-md-6">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-body">
+                                <p class="card-text">{{ query.0 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{% url query.1 %}" type="button"
+                                       class="btn btn-sm btn-outline-secondary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

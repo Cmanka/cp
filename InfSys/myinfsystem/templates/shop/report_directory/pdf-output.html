@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDF output</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+
+            @top-center {
+                content: "Report";
+            }
+
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="mt-4 mb-4">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Employee fio</th>
+            <th>Employee email</th>
+            <th>Employee phone</th>
+            <th>Employee position</th>
+            <th>Employee order</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.phone }}</td>
+                <td>{{ employee.position }}</td>
+                <td>
+                    {% for order in employee.order_set.all %}
+                        {{ order }}<br>
+                    {% empty %}
+                        Not found order
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+<a href="{% url 'Report' %}" class="btn btn-success">Back to site</a>
+</body>
+</html>
